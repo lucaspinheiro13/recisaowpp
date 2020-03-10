@@ -197,7 +197,7 @@ const sendMessage = (chat, message, cb) => {
   }
   ignoreLastMsg[title] = message
 
-  messageBox = document.querySelectorAll("[contenteditable='true']")[0]
+  messageBox = document.querySelectorAll("[contenteditable='true']")[1]
 
   //add text into input field
   messageBox.innerHTML = message.replace(/  /gm, "")
