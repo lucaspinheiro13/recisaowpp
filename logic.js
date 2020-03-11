@@ -3,7 +3,7 @@ const WhatsApee = require(path.join(__dirname, 'WhatsApee.js'));
 //WhatsAppe.start( receiver callback)
 WhatsApee.start(receiver);
 
-const Pessoa = {};
+const Pessoa = {passo:[]};
 
 // 
 function receiver (message,chatElem,title) {
