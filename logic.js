@@ -18,9 +18,9 @@ function receiver (message,chatElem,title) {
       } else {      
             if (Pessoa.passo[0]) {
                   Pessoa.nome = lcMessage;
-                  var message = lcMessage.toUpperCase()+" Em que posso ajudar?";
-                  message += "1- Calculo Recisão";
-                  message += "0- Voltar";
+                  var message = lcMessage.toUpperCase()+" Em que posso ajudar?\n";
+                  message += "1- Calculo Recisão\n";
+                  message += "0- Voltar\n";
                   
                   WhatsApee.send(chatElem,message);
             }
@@ -32,7 +32,7 @@ function receiver (message,chatElem,title) {
             }
             if (Pessoa.acao&&!Pessoa.passo[2]) {
                   Pessoa.salario = lcMessage;
-                  Pessoa.passo[2];
+                  Pessoa.passo[2] = true;
                   var message = Pessoa.salario*2/100;
                   WhatsApee.send(chatElem,message);
 
