@@ -11,7 +11,7 @@ function receiver (message,chatElem,title) {
 	var lcMessage = message.toLowerCase();
       
       if (lcMessage.includes("ola bot")) {                  
-                  var welcomeMessage = 'Digite seu nome.';
+                  var welcomeMessage = 'Olá, Digite seu nome por favor.';
                   Pessoa.passo[0] = true;
                   //WhatsApee.send(chat Elem is like chat id , message to send goes here)               
                   WhatsApee.send(chatElem,welcomeMessage);                  
