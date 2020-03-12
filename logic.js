@@ -1,9 +1,18 @@
 const path = require('path');
 const WhatsApee = require(path.join(__dirname, 'WhatsApee.js'));
+const mysql = require('mysql');
+
+const connection = mysql.createConnection({
+      host:'localhost',
+      user:'root',
+      password:'',
+      database:'rescisaowpp'
+});
+
 //WhatsAppe.start( receiver callback)
 WhatsApee.start(receiver);
 
-function Cliente() {
+var cliente = function Cliente() {
       this.nome
       this.salario
       this.ferias
@@ -11,34 +20,47 @@ function Cliente() {
 }
 
 const Pessoa = [];
-var valida;
+
+var valida = true;
 // 
 function receiver (message,chatElem,title) {
-	  //message to lower case
+	 
       var lcMessage = message.toLowerCase();
       
       let nome = document.querySelector("#main > header > div._3V5x5 > div > div > span").innerHTML;
-      for(let i = 0; i <= Pessoa.length; i++){
-            if(Pessoa[i].nome == nome){
+
+      for (let i = 0; i <= Pessoa.length; i++) {
+            
+            if (Pessoa[i].nome == nome) {
+
                 var Cliente = Pessoa[i];
+
                 valida = false;
+
                 break;
-            }else{
+
+            } else {
                 valida = true;
             }
       }
       if(valida = true){
-            Pessoa.push(new Cliente());
+
+            Pessoa.push(new cliente());
+
             var Cliente = Pessoa[Pessoa.length-1];
+
             Cliente.nome = nome;
+
       }
 
-      if (lcMessage.includes("ola bot")) {                  
+      if (lcMessage.includes("ola")) {   
+
             var welcomeMessage = 'Olá,'+Cliente.nome;
 
             WhatsApee.send(chatElem,welcomeMessage );      
-      } 
 
+      } 
+      
 
 
       if(lcMessage.includes("@time")){
