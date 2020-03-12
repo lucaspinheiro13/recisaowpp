@@ -183,6 +183,7 @@ const selectChat = (chat, cb) => {
 // Send a message
 const send = (chat, message) => {
   selectChat(chat, () => {
+    
     sendMessage(chat, message.trim())
   })
 }
