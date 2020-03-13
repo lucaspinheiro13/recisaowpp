@@ -31,12 +31,13 @@ function receiver (message,chatElem,title) {
             var valida = true ;
             for ( i = 0; i < Pessoa.length; i++) {
                   if(Pessoa[i]){
+                
                         if (Pessoa[i].nome == title) {
             
                         var Cliente = Pessoa[i];
             
                         valida = false;
-                        console.log('chegou auqi');
+ 
                         break;
             
                         } else {
@@ -46,8 +47,8 @@ function receiver (message,chatElem,title) {
                   }
 
             }
-            console.log(valida);
-            if(valida = true){
+ 
+            if(valida == true){
       
                   Pessoa.push(new cliente());
       
@@ -56,13 +57,15 @@ function receiver (message,chatElem,title) {
                   Cliente.nome = title;
       
             }
+
+            
             
             var welcomeMessage = 'Olá, '+ Cliente.nome;
-            console.log(Pessoa);
+ 
             WhatsApee.send(chatElem,welcomeMessage );      
 
       } 
-      
+
 
 
       if(lcMessage.includes("@time")){
