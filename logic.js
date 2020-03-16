@@ -32,6 +32,7 @@ function receiver (message,chatElem,title) {
           
                   if (Pessoa[i].nome == title) {
                         var Cliente = Pessoa[i];
+                        Clinte.index = i;
                         valida = false;
                         break;
                   } else {
@@ -46,23 +47,37 @@ function receiver (message,chatElem,title) {
             Pessoa.push(new cliente());
 
             var Cliente = Pessoa[Pessoa.length-1];
-
+            Cliente.index = Pessoa.length-1;
             Cliente.nome = title;
 
       }
 
      
-      if (lcMessage.includes("ola")) {   
-            var welcomeMessage = 'Olá, '+ Cliente.nome;
- 
+      if (lcMessage ==  "Ola bot") {   
+            var welcomeMessage = 'Olá, '+ Cliente.nome  + ', como posso ajudar? \n 1 - Calcular Rescisão \n 2 - Entrar em contato \n 0 - Encerrar atendimento. ';
+            Cliente.passo = "first" ;
             WhatsApee.send(chatElem,welcomeMessage );      
 
       } 
       
-      if (lcMessage == "!recisao"){
+      if (Cliente.passo = "first"){
 
-            var message = "Digite seu Salario atencedido de ! : Ex. !5000.00\n Testando barra;\n \t 1- teste menu ";
-
+            switch (lcMessage){
+                  case '1':
+                        message = "Ótimo , para começarmos digite o valor do salário \n \t Não tema, você está seguro consoco..."
+                        Cliente.passo="second";
+                        break;
+                  case '2':
+                        message = "Entendi, para entrar em contato conosco ligue para 99694-0316\n Aguardamos sua ligação!";
+                        Pessoa.splice(Cliente.index,1);
+                        break;
+                  case '0':
+                        message = "Até a próxima !";
+                        Pessoa.splice(Cliente.index,1);
+                        break;
+                  default:
+                        message = "Comando não identificado, tente denovo. \n Escolha uma das opções do menu anterior. "
+            }
             WhatsApee.send(chatElem,message);
 
       }
