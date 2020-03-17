@@ -53,14 +53,15 @@ function receiver (message,chatElem,title) {
       }
 
      
-      if (lcMessage ==  "Ola bot") {   
+      if (lcMessage ==  "ola bot") {   
             var welcomeMessage = 'Olá, '+ Cliente.nome  + ', como posso ajudar? \n 1 - Calcular Rescisão \n 2 - Entrar em contato \n 0 - Encerrar atendimento. ';
             Cliente.passo = "first" ;
             WhatsApee.send(chatElem,welcomeMessage );      
 
       } 
       
-      if (Cliente.passo = "first"){
+      
+      if (Cliente.passo == "first"){
 
             switch (lcMessage){
                   case '1':
