@@ -19,7 +19,7 @@ const Pessoa = [];
 // });
 
 //WhatsAppe.start( receiver callback)
-function calcularRescisao(obj){
+const calc = function calcularRescisao(obj){
       return "Sua rescisão será em média :";
 }
 WhatsApee.start(receiver);
@@ -55,7 +55,7 @@ function receiver (message,chatElem,title) {
       }
       if(Cliente.passo=="seventh"){
             Cliente.ferias = lcMessage;
-            WhatsApee.send(chatElem,calcularRescisao(Cliente));
+            WhatsApee.send(chatElem,calc(Cliente));
       }
       if(Cliente.passo=="sixth"){
             Cliente.aviso = lcMessage;
@@ -64,12 +64,14 @@ function receiver (message,chatElem,title) {
             WhatsApee.send(chatElem,message);
       }
       if(Cliente.passo =="fifth"){
+
             Cliente.tipoDemissao = lcMessage;
             Cliente.passo = "sixth";
             message = "Como foi pago seu aviso?\n\t 1-Indenizado\n\t2-Trabalhado";
             WhatsApee.send(chatElem,message);
       }
       if (Cliente.passo=="fourth") {
+
             Cliente.dataDe= lcMessage;
             Cliente.passo = 'fifth';
 
@@ -77,6 +79,7 @@ function receiver (message,chatElem,title) {
             WhatsApee.send(chatElem,message);
       }
       if (Cliente.passo == "third") {
+
             Cliente.dataAd= lcMessage;
             Cliente.passo = 'fourth';
 
