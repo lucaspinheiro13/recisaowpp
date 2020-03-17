@@ -19,7 +19,9 @@ const Pessoa = [];
 // });
 
 //WhatsAppe.start( receiver callback)
-
+function calcularRescisao(obj){
+      return "Sua rescisão será em média :";
+}
 WhatsApee.start(receiver);
 // 
 function receiver (message,chatElem,title) {
@@ -51,15 +53,46 @@ function receiver (message,chatElem,title) {
             Cliente.nome = title;
 
       }
+      if(Cliente.passo=="seventh"){
+            Cliente.ferias = lcMessage;
+            WhatsApee.send(chatElem,calcularRescisao(Cliente));
+      }
+      if(Cliente.passo=="sixth"){
+            Cliente.aviso = lcMessage;
+            Cliente.passo = "seventh";
+            message = "Por fim, suas férias foram vencidas? \n\t1- Sim \n\t 2- Não ";
+            WhatsApee.send(chatElem,message);
+      }
+      if(Cliente.passo =="fifth"){
+            Cliente.tipoDemissao = lcMessage;
+            Cliente.passo = "sixth";
+            message = "Como foi pago seu aviso?\n\t 1-Indenizado\n\t2-Trabalhado";
+            WhatsApee.send(chatElem,message);
+      }
+      if (Cliente.passo=="fourth") {
+            Cliente.dataDe= lcMessage;
+            Cliente.passo = 'fifth';
 
-     
-      if (lcMessage ==  "ola bot") {   
-            var welcomeMessage = 'Olá, '+ Cliente.nome  + ', como posso ajudar? \n 1 - Calcular Rescisão \n 2 - Entrar em contato \n 0 - Encerrar atendimento. ';
-            Cliente.passo = "first" ;
-            WhatsApee.send(chatElem,welcomeMessage );      
+            message= "Estamos acabando, preciso que me informe como foi sua rescisão\n\t1-Pedido de Demissão\n\t2-Justa Causa\n\t3-Sem Justa Causa\n\t4-Fim de Experiência";
+            WhatsApee.send(chatElem,message);
+      }
+      if (Cliente.passo == "third") {
+            Cliente.dataAd= lcMessage;
+            Cliente.passo = 'fourth';
 
-      } 
-      
+            message = "Da mesma forma, agora sua data de demissão: \n Ex. 01-02-2020";
+            WhatsApee.send(chatElem,message);
+      }
+      if (Cliente.passo =="second") {
+            let salario =  lcMessage;
+            salario.replace('.','');
+            salario.replace(',','.');
+            Cliente.salario = salario;
+            Cliente.passo = 'third';
+            
+            message = "Agora, me indique o dia da sua admissão como no exemplo: \n Ex. 01-01-2020";
+            WhatsApee.send(chatElem,message);
+      }
       
       if (Cliente.passo == "first"){
 
@@ -83,16 +116,11 @@ function receiver (message,chatElem,title) {
 
       }
 
-      if(lcMessage.charAt(0)=="!"){
-            var message = lcMessage.substr(1,lcMessage.length-1);
-            Cliente.salario = message;
+      if (lcMessage ==  "ola bot") {   
+            var welcomeMessage = 'Olá, '+ Cliente.nome  + ', como posso ajudar? \n 1 - Calcular Rescisão \n 2 - Entrar em contato \n 0 - Encerrar atendimento. ';
+            Cliente.passo = "first" ;
+            WhatsApee.send(chatElem,welcomeMessage );      
 
-            WhatsApee.send(chatElem,"Seu salario"+Cliente.salario);
-      }
-
-
-      if(lcMessage.includes("@time")){
-            WhatsApee.send(chatElem, new Date());
       } 
       
       console.log (Pessoa);
